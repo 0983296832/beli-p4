@@ -10,6 +10,7 @@ module.exports = {
     open: false,
     liveReload: true,
     historyApiFallback: true,
+    host: 'p2.belidevelopers.com',
     allowedHosts: 'all'
   },
   plugins: [
