@@ -1,0 +1,365 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 0 0% 73%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply antialiased font-medium font-gilroy bg-background text-foreground text-primary-neutral-900;
+  }
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../fonts/SVN-Gilroy\ Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../fonts/SVN-Gilroy\ Light.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../fonts/SVN-Gilroy\ Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../fonts/SVN-Gilroy\ Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../fonts/SVN-Gilroy\ SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SVN-Gilroy';
+  src: url('../fonts/SVN-Gilroy\ Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-gilroy {
+  font-family: 'SVN-Gilroy', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b7b9bc;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #edf2f7;
+  border-radius: 8px;
+}
+
+.table-rounded {
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 14px;
+  @apply shadow-lg;
+}
+
+.table-rounded thead tr th {
+  padding: 8px 6px;
+  @apply text-primary-neutral-900 border border-slate-200 font-semibold;
+}
+
+.table-rounded thead tr.tr-sub-form th {
+  padding: 8px 6px;
+  @apply bg-primary-blue-500;
+}
+
+.table-rounded thead tr th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.table-rounded thead tr.tr-sub th:first-child,
+.table-rounded thead tr.tr-sub-end th:first-child {
+  border-top-left-radius: 0px;
+  border-top: none;
+}
+
+.table-rounded thead tr th:not(:last-child) {
+  border-right: none;
+}
+
+.table-rounded thead tr.tr-sub th:not(:last-child),
+.table-rounded thead tr.tr-sub-end th:not(:last-child) {
+  border-top: none;
+}
+
+.table-rounded thead tr th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.table-rounded thead tr.tr-sub-end th:last-child {
+  border-top-right-radius: 0px;
+  border-top: none;
+}
+
+.table-rounded thead tr.tr-sub th:last-child {
+  border-top-right-radius: 0px;
+  border-top: none;
+  border-right: none;
+}
+
+.table-rounded tbody {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-rounded tbody td {
+  border: 1px solid #e2e8f0;
+  padding: 8px 8px;
+}
+
+.table-rounded tbody tr:first-child td {
+  border-top: none;
+}
+
+.table-rounded tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.table-rounded tbody tr:last-child.tr-sub-row-span td:first-child {
+  border-bottom-left-radius: 0px;
+}
+
+.table-rounded tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.table-rounded tbody tr:not(:last-child) td:nth-child(n) {
+  border-bottom: none;
+}
+
+.table-rounded tbody tr td:not(:last-child) {
+  border-right: none;
+}
+
+.table-rounded tbody tr:not(:last-child) td.td-row-span {
+  border-bottom-left-radius: 8px;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.bg-img-layout {
+  background-image: url('../images/BG-VHS-01-1.png');
+}
+
+.bg-image-home {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/BG-VHS-01-1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.3;
+    z-index: -1;
+  }
+}
+
+.card {
+  @apply rounded-lg flex flex-col relative;
+}
+
+.card-header {
+  @apply px-6 py-4 rounded-tl-lg rounded-tr-lg;
+}
+
+.tiptap:focus-visible {
+  outline: none;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: var(--gray-4);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.answer .ProseMirror p.is-empty::before {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.answer-btn-line {
+  @apply bg-[linear-gradient(to_right,_rgba(255,255,255,0)_0%,_rgba(255,255,255,1)_50%,_rgba(255,255,255,0)_100%)];
+}
+
+.custom_marker {
+  @apply relative pl-3 before:content-['•'] before:absolute before:left-0 before:top-[3px] before:text-primary-neutral-500 before:mr-2 before:text-2xl before:leading-3;
+}
+
+.container-padding {
+  padding: 24px 40px;
+}
+
+.container-padding:has(> div.no-padding-container:first-child) {
+  padding: 0;
+}
+@media (max-width: 640px) {
+  .container-padding {
+    padding: 16px 20px; /* tuỳ chỉnh lại cho sm */
+  }
+}
+.hide-close [data-radix-dialog-close] {
+  display: none !important;
+}
+
+.sub-menu {
+  @apply text-primary-neutral-900;
+}
+
+.wrapper-menu:hover .sub-menu {
+  display: block;
+  pointer-events: all;
+  @apply text-primary-neutral-50;
+}
+
+.parent-menu.active-menu {
+  @apply text-primary-neutral-50 bg-primary-blue-500;
+}
+
+.parent-menu.active-menu .icon-menu {
+  @apply text-primary-neutral-50;
+}
+
+.parent-menu.active-menu .text-menu {
+  @apply text-primary-neutral-50;
+}
+
+.icon-menu {
+  @apply text-primary-neutral-900;
+}
+
+.parent-menu:hover {
+  @apply bg-primary-blue-500 text-primary-neutral-50;
+}
+
+.parent-menu:hover .icon-menu {
+  @apply text-primary-neutral-50;
+}
+
+.parent-menu:hover .text-menu {
+  @apply text-primary-neutral-50;
+}
+
+.leader-line {
+  z-index: 60;
+}
+
+.hide-scrollbar {
+  overflow: auto; /* hoặc scroll nếu muốn luôn hiển thị khả năng cuộn */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari và Opera */
+}
+
+.ReactVirtualized__Grid__innerScrollContainer {
+  width: auto;
+  height: 11640px;
+  max-width: unset;
+  max-height: 11640px;
+  overflow: hidden;
+  position: relative;
+}
+
+.PhotoView__Mask {
+  z-index: 9999 !important;
+}
+.PhotoView__Photo {
+  z-index: 10000 !important;
+}

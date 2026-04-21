@@ -1,0 +1,18 @@
+---
+description: Friendly pastel add/edit form layout for user management screens
+globs: src/pages/users/**/*Add.tsx,src/pages/users/**/*Edit.tsx
+alwaysApply: false
+---
+
+# User Form Friendly Style
+
+- Keep business logic unchanged: fetch/detail mapping, submit payloads, validation/errors, permissions, API calls, and navigation targets.
+- Apply to add/edit form screens for `administrator`, `teacher`, `student`, `teacher_assistant` pages.
+- Shell: `mx-auto w-full max-w-6xl pb-24`, main container `rounded-3xl border border-violet-200 bg-white shadow-sm overflow-hidden`.
+- Header: `bg-violet-50 border-b border-violet-200` with eyebrow label + main title + compact back/list button.
+- Use section cards with soft pastel borders (`violet`, `emerald`, `amber`, `fuchsia`, `rose`) and compact spacing for scan speed.
+- Prefer Remix icons (`@remixicon/react`) for section headers and actions; avoid legacy image icons when an equivalent exists.
+- Avatar/upload block: `rounded-2xl border border-violet-200 bg-violet-50/40`, preview image with subtle border/shadow.
+- Avoid legacy `card` / `card-header` / solid `bg-primary-blue-500` headers on these screens.
+- Keep form fields responsive (`grid` on desktop, stacked on mobile) without removing existing fields.
+- Use a fixed bottom action bar (`cancel` + primary `add/update`) with soft border/background for consistent UX.

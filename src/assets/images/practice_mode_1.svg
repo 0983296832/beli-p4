@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="78" height="61" fill="none" viewBox="0 0 78 61">
+  <g clip-path="url(#a)">
+    <path fill="#fff" d="M.043 10.422 35.545 0l14.083 47.976-35.501 10.422z"/>
+    <rect width="16" height="1" x="7.262" y="20.809" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 7.262 20.809)"/>
+    <rect width="28" height="1" x="8.107" y="23.688" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 8.107 23.688)"/>
+    <rect width="28" height="1" x="8.951" y="26.566" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 8.951 26.566)"/>
+    <rect width="28" height="1" x="9.797" y="29.443" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 9.797 29.443)"/>
+    <rect width="28" height="1" x="10.643" y="32.322" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 10.643 32.322)"/>
+    <rect width="28" height="1" x="11.486" y="35.201" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 11.486 35.201)"/>
+    <rect width="28" height="1" x="12.332" y="38.08" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 12.332 38.08)"/>
+    <rect width="28" height="1" x="13.176" y="40.959" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 13.176 40.959)"/>
+    <rect width="28" height="1" x="14.021" y="43.836" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 14.021 43.836)"/>
+    <rect width="28" height="1" x="14.867" y="46.715" fill="#6BA2D2" rx=".5" transform="rotate(-16.36 14.867 46.715)"/>
+    <path fill="#6BA2D2" d="m32.491 5.221-1.859 3.36-1.03-.635a.76.76 0 0 0-.874.256.75.75 0 0 0 .254.863l1.633.876a.76.76 0 0 0 .44.08.56.56 0 0 0 .337-.308l2.13-3.856a.75.75 0 0 0-.254-.864c-.152-.164-.536-.05-.777.228Z"/>
+  </g>
+  <path stroke="#6BA2D2" stroke-width="1.5" d="m.974 10.93 34.063-10 13.66 46.537-34.062 10z"/>
+  <g clip-path="url(#b)">
+    <path fill="#fff" d="m41.703 4.006 36.254 7.393-9.99 48.992-36.255-7.393z"/>
+    <rect width="16" height="1" x="43.225" y="16.563" fill="#6BA2D2" rx=".5" transform="rotate(11.526 43.225 16.563)"/>
+    <rect width="28" height="1" x="42.625" y="19.502" fill="#6BA2D2" rx=".5" transform="rotate(11.526 42.625 19.502)"/>
+    <rect width="28" height="1" x="42.025" y="22.441" fill="#6BA2D2" rx=".5" transform="rotate(11.526 42.025 22.441)"/>
+    <rect width="28" height="1" x="41.426" y="25.381" fill="#6BA2D2" rx=".5" transform="rotate(11.526 41.426 25.38)"/>
+    <rect width="28" height="1" x="40.826" y="28.32" fill="#6BA2D2" rx=".5" transform="rotate(11.526 40.826 28.32)"/>
+    <rect width="28" height="1" x="40.227" y="31.26" fill="#6BA2D2" rx=".5" transform="rotate(11.526 40.227 31.26)"/>
+    <rect width="28" height="1" x="39.629" y="34.199" fill="#6BA2D2" rx=".5" transform="rotate(11.526 39.629 34.2)"/>
+    <rect width="28" height="1" x="39.029" y="37.139" fill="#6BA2D2" rx=".5" transform="rotate(11.526 39.03 37.139)"/>
+    <rect width="28" height="1" x="38.43" y="40.078" fill="#6BA2D2" rx=".5" transform="rotate(11.526 38.43 40.078)"/>
+    <rect width="28" height="1" x="37.83" y="43.018" fill="#6BA2D2" rx=".5" transform="rotate(11.526 37.83 43.018)"/>
+    <path fill="#6BA2D2" d="m72.817 14.586-3.214 2.1-.614-1.044a.76.76 0 0 0-.892-.182.75.75 0 0 0-.18.882l1.034 1.538a.76.76 0 0 0 .352.275.558.558 0 0 0 .442-.114l3.686-2.412a.75.75 0 0 0 .18-.881c-.058-.216-.45-.296-.794-.162Z"/>
+  </g>
+  <path stroke="#6BA2D2" stroke-width="1.5" d="m42.288 4.891 34.784 7.093-9.691 47.522-34.784-7.093z"/>
+  <defs>
+    <clipPath id="a">
+      <path fill="#fff" d="M.043 10.422 35.545 0l14.083 47.976-35.501 10.422z"/>
+    </clipPath>
+    <clipPath id="b">
+      <path fill="#fff" d="m41.703 4.006 36.254 7.393-9.99 48.992-36.255-7.393z"/>
+    </clipPath>
+  </defs>
+</svg>

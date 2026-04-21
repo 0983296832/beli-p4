@@ -1,0 +1,19 @@
+---
+description: Friendly pastel detail layout for user (admin/teacher/student/TA) profile screens
+globs: src/pages/users/**/*Detail.tsx
+alwaysApply: false
+---
+
+# User Detail Friendly Style
+
+- Preserve all business logic: data fetch, delete confirm, navigation targets, `user_ability` gates, `DrawerStatistic` / filter payloads, field mappings, and HTML description rendering.
+- Shell: `pb-24`, inner `max-w-6xl mx-auto`, main card `rounded-3xl border border-violet-200 bg-white shadow-sm overflow-hidden`.
+- Header row: `bg-violet-50 border-b border-violet-200`, eyebrow label (uppercase `text-xs text-violet-600`), title = display name, subtitle = username; actions on the right.
+- Actions: delete (rose outline, icon-only) then edit (emerald outline, icon-only) when `user_ability` allows — match order used on administrator detail. Use `@remixicon/react` (`RiDeleteBin6Line`, `RiEdit2Line`), not image icons.
+- Layout: responsive `flex-col lg:flex-row`; left profile card `lg:w-72`, `rounded-2xl border border-violet-200 bg-violet-50/40`, avatar `aspect-square`, chips for username + active/inactive.
+- Primary info panel: `rounded-2xl border border-violet-200`, header strip `bg-violet-50/80` + `RiUserLine`; rows as `divide-y divide-violet-100` with label/value grid; use `RiCalendarLine`, `RiPhoneLine`, `RiMailLine`, `RiMapPin2Line` on relevant labels.
+- Management / stats panel: `rounded-2xl border border-emerald-200`, header `bg-emerald-50/80` + `RiBarChart2Line`; each stat as `<button type="button">` with same `onClick` / `setStatisticInfo` as before (keyboard + a11y).
+- Extra blocks (attendance, etc.): `rounded-2xl border border-sky-200` or `border-fuchsia-200` with soft header; optional `RiCalendarCheckLine` for attendance context.
+- Description: `rounded-2xl border border-rose-200 bg-rose-50/30`, inner content `replaceNewlineWithBr` unchanged.
+- Footer: primary `Button` “close” with `RiArrowLeftLine` + `navigate` to the correct list route (`…/list`).
+- Avoid legacy `card` / `card-header` / solid `bg-primary-blue-500` headers for these screens.

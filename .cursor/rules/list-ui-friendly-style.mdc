@@ -1,0 +1,20 @@
+---
+description: Friendly bright list UI style for admin-like pages
+globs: src/pages/**/*List.tsx,src/pages/Curriculum/index.tsx,src/pages/TeachingProgram/index.tsx,src/pages/ExerciseReport/index.tsx
+alwaysApply: false
+---
+
+# List UI Friendly Style
+
+- Keep business logic unchanged; only edit visual structure and classes unless explicitly requested.
+- Prefer bright, friendly pastel colors (`violet`, `sky`, `emerald`, `amber`, `rose`) and avoid heavy/dark palettes.
+- Avoid gradients by default; use solid/light backgrounds with subtle borders and soft shadows.
+- Use compact rounded corners (`rounded-md` to `rounded-xl`), avoid excessive rounding.
+- Place search/filter/view-toggle/action buttons in one cohesive top toolbar.
+- In card view, prioritize contact info first (name, phone, email, address); keep cards compact and scan-friendly.
+- For tables, use clear group sections with light tinted backgrounds and strong readability.
+- Do not use legacy `table-rounded` CSS class; build table visuals with Tailwind utility classes directly.
+- For list pages, table restyle is required (header tint + cell borders + zebra/hover), not only toolbar skin changes.
+- Add subtle vertical borders between table cells (`th`/`td`), and remove the right border on the last column.
+- Non-list screens that still use `.table-rounded` share borders in `src/assets/styles/style.css`; keep a light grid (e.g. `slate-200` / `#e2e8f0`) so vertical dividers stay visible between columns without heavy lines.
+- Use Remix icons as React components for UI actions instead of image icons when feasible.
