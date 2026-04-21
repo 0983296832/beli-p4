@@ -50,7 +50,7 @@ const StudentsAddBulk = (props: Props) => {
     setLoading(true);
     try {
       const response = await studentServices.getStudentImportForm();
-      downloadFileFromBlob(response, 'import_hoc_sinh_vhs.xlsx');
+      downloadFileFromBlob(response, 'import_hoc_sinh_beli.xlsx');
       setLoading(false);
     } catch (error) {
       console.log(error);

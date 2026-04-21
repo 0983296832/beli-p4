@@ -72,7 +72,7 @@ const TeachingProgramDetail = () => {
     setLoading(true);
     try {
       const response = await teachingProgramServices.getTeachingProgramDetailImportForm();
-      downloadFileFromBlob(response, 'import_tiet_day_vhs.xlsx');
+      downloadFileFromBlob(response, 'import_tiet_day_beli.xlsx');
       setLoading(false);
     } catch (error) {
       console.log(error);

@@ -614,7 +614,7 @@ const EditQuestion = (props: Props) => {
                                   }}
                                 >
                                   <div className='w-[120px] h-[60px] min-w-[120px] flex items-center justify-center rounded-lg bg-primary-neutral-800 border-[2px] border-primary-blue-500'>
-                                    <p className='text-white text-2xl font-medium'>VHS</p>
+                                    <p className='text-white text-2xl font-medium'>BeliTeachers</p>
                                   </div>
                                 </div>
 

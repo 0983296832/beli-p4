@@ -50,7 +50,7 @@ const ClassroomAddBulk = (props: Props) => {
     setLoading(true);
     try {
       const response = await classroomServices.getClassroomImportForm();
-      downloadFileFromBlob(response, 'import_lop_hoc_vhs.xlsx');
+      downloadFileFromBlob(response, 'import_lop_hoc_beli.xlsx');
       setLoading(false);
     } catch (error) {
       console.log(error);

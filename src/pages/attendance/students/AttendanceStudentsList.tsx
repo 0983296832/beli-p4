@@ -292,7 +292,7 @@ const AttendanceStudentsList = (props: Props) => {
     setLoading(true);
     try {
       const response: any = await attendanceServices.getStudentAttendanceExport(params);
-      downloadFileFromBlob(response, 'danh_sach_diem_danh_hoc_sinh_vhs.xlsx');
+      downloadFileFromBlob(response, 'danh_sach_diem_danh_hoc_sinh_beli.xlsx');
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -527,73 +527,79 @@ const AttendanceStudentsList = (props: Props) => {
         <div className='mt-1 overflow-hidden rounded-3xl border border-violet-200 bg-white shadow-sm'>
           <div className='overflow-x-auto'>
             <table className={TABLE_SHELL}>
-            <thead>
-              <tr>
-                <th scope='col' className='bg-slate-100'>
-                  <div className='flex justify-center'>
-                    <CheckboxInput
-                      checked={data.every((attendant: any) => ids?.includes(attendant?.id))}
-                      onCheckedChange={(checked) => {
-                        if (checked) {
-                          setIds([...ids, ...data.map((attendant: any) => attendant?.id)]);
-                        } else {
-                          setIds(ids.filter((id) => !data.map((attendant: any) => attendant?.id).includes(id)));
-                        }
-                      }}
-                    />
-                  </div>
-                </th>
-                <th scope='col' className='bg-violet-100/70 text-violet-900'>
-                  {t('attendance_session_code')}-{t('students')}
-                </th>
-                <th scope='col' className='bg-sky-100/70 text-sky-900'>
-                  {t('attendance_date')}
-                  <br />
-                  {t('lesson_time')}
-                </th>
-                <th scope='col' className='bg-amber-100/70 text-amber-900'>
-                  {t('code')}, {t('class_name')}
-                </th>
-                <th scope='col' className='bg-amber-100/70 text-amber-900'>
-                  {t('code')}, {t('administrator')}
-                </th>
-                <th scope='col' className='bg-emerald-100/70 text-emerald-900'>
-                  {t('period_order_in_program')}
-                </th>
-                <th scope='col' className='bg-cyan-100/70 text-cyan-900'>{t('attendance_statistics')}</th>
-                <th scope='col' className='bg-violet-50 text-violet-900'>{t('subject')}</th>
-                <th scope='col' className='bg-amber-50 text-amber-900'>{t('location')}</th>
-                <th scope='col' className='w-[6%] whitespace-nowrap bg-rose-100/70 text-rose-900'>
-                  {t('action')}
-                </th>
-              </tr>
-              {ids?.length > 0 && (
+              <thead>
                 <tr>
-                  <th colSpan={10} className='bg-rose-500 p-2.5'>
-                    <div className='flex justify-start'>
-                      <Button
-                        size={'sm'}
-                        onClick={() => {
-                          setIsShowConfirmBulk(true);
+                  <th scope='col' className='bg-slate-100'>
+                    <div className='flex justify-center'>
+                      <CheckboxInput
+                        checked={data.every((attendant: any) => ids?.includes(attendant?.id))}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setIds([...ids, ...data.map((attendant: any) => attendant?.id)]);
+                          } else {
+                            setIds(ids.filter((id) => !data.map((attendant: any) => attendant?.id).includes(id)));
+                          }
                         }}
-                        variant='secondary'
-                        className='rounded-lg bg-white text-rose-600 hover:bg-rose-50'
-                      >
-                        <RiDeleteBin6Line className='size-4' />
-                        {t('delete')}
-                        <span className='rounded-full bg-rose-100 px-3 py-0.5 text-[10px] font-semibold text-rose-700'>
-                          {ids.length}
-                        </span>
-                      </Button>
+                      />
                     </div>
                   </th>
+                  <th scope='col' className='bg-violet-100/70 text-violet-900'>
+                    {t('attendance_session_code')}-{t('students')}
+                  </th>
+                  <th scope='col' className='bg-sky-100/70 text-sky-900'>
+                    {t('attendance_date')}
+                    <br />
+                    {t('lesson_time')}
+                  </th>
+                  <th scope='col' className='bg-amber-100/70 text-amber-900'>
+                    {t('code')}, {t('class_name')}
+                  </th>
+                  <th scope='col' className='bg-amber-100/70 text-amber-900'>
+                    {t('code')}, {t('administrator')}
+                  </th>
+                  <th scope='col' className='bg-emerald-100/70 text-emerald-900'>
+                    {t('period_order_in_program')}
+                  </th>
+                  <th scope='col' className='bg-cyan-100/70 text-cyan-900'>
+                    {t('attendance_statistics')}
+                  </th>
+                  <th scope='col' className='bg-violet-50 text-violet-900'>
+                    {t('subject')}
+                  </th>
+                  <th scope='col' className='bg-amber-50 text-amber-900'>
+                    {t('location')}
+                  </th>
+                  <th scope='col' className='w-[6%] whitespace-nowrap bg-rose-100/70 text-rose-900'>
+                    {t('action')}
+                  </th>
                 </tr>
-              )}
-            </thead>
-            <tbody className='bg-white'>
-              {data?.length > 0 ? (
-                data.map((attendant: any, index: number) => {
-                  const attend_class = `${filter(attendant?.students, (item) => [1].includes(item?.status))?.length}/
+                {ids?.length > 0 && (
+                  <tr>
+                    <th colSpan={10} className='bg-rose-500 p-2.5'>
+                      <div className='flex justify-start'>
+                        <Button
+                          size={'sm'}
+                          onClick={() => {
+                            setIsShowConfirmBulk(true);
+                          }}
+                          variant='secondary'
+                          className='rounded-lg bg-white text-rose-600 hover:bg-rose-50'
+                        >
+                          <RiDeleteBin6Line className='size-4' />
+                          {t('delete')}
+                          <span className='rounded-full bg-rose-100 px-3 py-0.5 text-[10px] font-semibold text-rose-700'>
+                            {ids.length}
+                          </span>
+                        </Button>
+                      </div>
+                    </th>
+                  </tr>
+                )}
+              </thead>
+              <tbody className='bg-white'>
+                {data?.length > 0 ? (
+                  data.map((attendant: any, index: number) => {
+                    const attend_class = `${filter(attendant?.students, (item) => [1].includes(item?.status))?.length}/
                                 ${attendant?.students?.length || 0} (
                                 ${roundNumber(
                                   (filter(attendant?.students, (item) => [1].includes(item?.status))?.length /
@@ -601,7 +607,7 @@ const AttendanceStudentsList = (props: Props) => {
                                     100 || 0
                                 )}
                                 %)`;
-                  const absent = `${filter(attendant?.students, (item) => [2].includes(item?.status))?.length}/
+                    const absent = `${filter(attendant?.students, (item) => [2].includes(item?.status))?.length}/
               ${attendant?.students?.length || 0} (
               ${roundNumber(
                 (filter(attendant?.students, (item) => [2].includes(item?.status))?.length /
@@ -609,135 +615,135 @@ const AttendanceStudentsList = (props: Props) => {
                   100 || 0
               )}
               %)`;
-                  const exclue_lesson = `${filter(attendant?.students, (item) => item?.counted == 1)?.length}/${attendant?.students?.length || 0} (
+                    const exclue_lesson = `${filter(attendant?.students, (item) => item?.counted == 1)?.length}/${attendant?.students?.length || 0} (
               ${roundNumber((filter(attendant?.students, (item) => item?.counted == 1)?.length / attendant?.students?.length) * 100 || 0)}
               %)`;
-                  const no_exclue_lesson = `${filter(attendant?.students, (item) => item?.counted !== 1)?.length}/${attendant?.students?.length || 0} (
+                    const no_exclue_lesson = `${filter(attendant?.students, (item) => item?.counted !== 1)?.length}/${attendant?.students?.length || 0} (
               ${roundNumber((filter(attendant?.students, (item) => item?.counted !== 1)?.length / attendant?.students?.length) * 100 || 0)}
               %)`;
-                  return (
-                    <tr
-                      key={index}
-                      className='transition-colors odd:bg-white even:bg-violet-50/40 hover:bg-cyan-50/70'
-                    >
-                      <td>
-                        <div className='flex justify-center'>
-                          <CheckboxInput
-                            checked={ids?.includes(attendant?.id)}
-                            onCheckedChange={(checked) => {
-                              if (ids?.includes(attendant?.id)) {
-                                setIds(ids?.filter((id) => id !== attendant?.id));
-                              } else {
-                                setIds([...ids, attendant?.id]);
-                              }
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <div className='flex items-center gap-2'>
-                          <div className='text-start'>
-                            <Link
-                              to={`/attendance/students/detail/${attendant?.id}`}
-                              className='font-medium text-violet-700 hover:underline'
-                            >
-                              {attendant?.student_attendance_code}
-                            </Link>
-                            <div
-                              className={`px-2 py-1 ${attendant?.status == 0 ? 'text-secondary-neutral-500 bg-secondary-neutral-50' : attendant?.status == 1 ? 'text-primary-success bg-[#e4ffe9]' : 'text-primary-neutral-500 bg-primary-neutral-100'} rounded-15 w-fit text-xs whitespace-nowrap`}
-                            >
-                              {t(
-                                attendant?.status == 0
-                                  ? 'submitted_not_approved'
-                                  : attendant?.status == 1
-                                    ? 'approved'
-                                    : 'canceled_not_approved'
-                              )}
+                    return (
+                      <tr
+                        key={index}
+                        className='transition-colors odd:bg-white even:bg-violet-50/40 hover:bg-cyan-50/70'
+                      >
+                        <td>
+                          <div className='flex justify-center'>
+                            <CheckboxInput
+                              checked={ids?.includes(attendant?.id)}
+                              onCheckedChange={(checked) => {
+                                if (ids?.includes(attendant?.id)) {
+                                  setIds(ids?.filter((id) => id !== attendant?.id));
+                                } else {
+                                  setIds([...ids, attendant?.id]);
+                                }
+                              }}
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div className='flex items-center gap-2'>
+                            <div className='text-start'>
+                              <Link
+                                to={`/attendance/students/detail/${attendant?.id}`}
+                                className='font-medium text-violet-700 hover:underline'
+                              >
+                                {attendant?.student_attendance_code}
+                              </Link>
+                              <div
+                                className={`px-2 py-1 ${attendant?.status == 0 ? 'text-secondary-neutral-500 bg-secondary-neutral-50' : attendant?.status == 1 ? 'text-primary-success bg-[#e4ffe9]' : 'text-primary-neutral-500 bg-primary-neutral-100'} rounded-15 w-fit text-xs whitespace-nowrap`}
+                              >
+                                {t(
+                                  attendant?.status == 0
+                                    ? 'submitted_not_approved'
+                                    : attendant?.status == 1
+                                      ? 'approved'
+                                      : 'canceled_not_approved'
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className='text-start'>
-                        <div>{convertTimestampToString(attendant?.attendance_time)}</div>
-                        <div>{attendant?.lesson_time}</div>
-                      </td>
-                      <td>
-                        <div>{getClassroomInfo(attendant?.classroom_id)?.classroom_name}</div>
-                        <div>{getClassroomInfo(attendant?.classroom_id)?.classroom_code}</div>
-                      </td>
-                      <td>
-                        <div>{getUserInfo(attendant?.admin_assigned_id)?.display_name}</div>
-                        <div>{getUserInfo(attendant?.admin_assigned_id)?.username}</div>
-                      </td>
-                      <td className='space-y-1 text-start'>
-                        <div>{`${attendant?.teaching_program_detail_number}/${attendant?.teaching_program?.lesson_count} (${roundNumber((attendant?.teaching_program_detail_number / attendant?.teaching_program?.lesson_count) * 100)}%)`}</div>
-                        <div>{attendant?.teaching_program_detail?.lesson_name}</div>
-                        <div>{attendant?.teaching_program_detail?.teaching_program_detail_code}</div>
-                      </td>
-                      <td className='space-y-1 text-start whitespace-nowrap'>
-                        <div>
-                          {t('attend_class')}: {attend_class}
-                        </div>
-                        <div>
-                          {t('absent')}: {absent}
-                        </div>
-                        <div>
-                          {t('_exclude_lesson')}: {exclue_lesson}
-                        </div>
-                        <div>
-                          {t('_no_deduction_class')}: {no_exclue_lesson}
-                        </div>
-                      </td>
-                      <td>
-                        <p>{getSubjectInfo(attendant?.subject_id)?.subject_name}</p>
-                        <p>{getSubjectInfo(attendant?.subject_id)?.subject_code}</p>
-                      </td>
-                      <td>
-                        <p>{getLocationInfo(attendant?.location_id)?.location_name}</p>
-                        <p>{getLocationInfo(attendant?.location_id)?.location_code}</p>
-                      </td>
-                      <td className='whitespace-nowrap w-[1%]'>
-                        <div className='flex items-center justify-center gap-1'>
-                          {attendant?.user_ability?.can_edit === 1 && (
-                            <Link to={`/attendance/students/edit/${attendant?.id}`}>
-                              <img src={EDIT_02} alt='' className='size-4' />
-                            </Link>
-                          )}
-                          {attendant?.user_ability?.can_delete === 1 && (
+                        </td>
+                        <td className='text-start'>
+                          <div>{convertTimestampToString(attendant?.attendance_time)}</div>
+                          <div>{attendant?.lesson_time}</div>
+                        </td>
+                        <td>
+                          <div>{getClassroomInfo(attendant?.classroom_id)?.classroom_name}</div>
+                          <div>{getClassroomInfo(attendant?.classroom_id)?.classroom_code}</div>
+                        </td>
+                        <td>
+                          <div>{getUserInfo(attendant?.admin_assigned_id)?.display_name}</div>
+                          <div>{getUserInfo(attendant?.admin_assigned_id)?.username}</div>
+                        </td>
+                        <td className='space-y-1 text-start'>
+                          <div>{`${attendant?.teaching_program_detail_number}/${attendant?.teaching_program?.lesson_count} (${roundNumber((attendant?.teaching_program_detail_number / attendant?.teaching_program?.lesson_count) * 100)}%)`}</div>
+                          <div>{attendant?.teaching_program_detail?.lesson_name}</div>
+                          <div>{attendant?.teaching_program_detail?.teaching_program_detail_code}</div>
+                        </td>
+                        <td className='space-y-1 text-start whitespace-nowrap'>
+                          <div>
+                            {t('attend_class')}: {attend_class}
+                          </div>
+                          <div>
+                            {t('absent')}: {absent}
+                          </div>
+                          <div>
+                            {t('_exclude_lesson')}: {exclue_lesson}
+                          </div>
+                          <div>
+                            {t('_no_deduction_class')}: {no_exclue_lesson}
+                          </div>
+                        </td>
+                        <td>
+                          <p>{getSubjectInfo(attendant?.subject_id)?.subject_name}</p>
+                          <p>{getSubjectInfo(attendant?.subject_id)?.subject_code}</p>
+                        </td>
+                        <td>
+                          <p>{getLocationInfo(attendant?.location_id)?.location_name}</p>
+                          <p>{getLocationInfo(attendant?.location_id)?.location_code}</p>
+                        </td>
+                        <td className='whitespace-nowrap w-[1%]'>
+                          <div className='flex items-center justify-center gap-1'>
+                            {attendant?.user_ability?.can_edit === 1 && (
+                              <Link to={`/attendance/students/edit/${attendant?.id}`}>
+                                <img src={EDIT_02} alt='' className='size-4' />
+                              </Link>
+                            )}
+                            {attendant?.user_ability?.can_delete === 1 && (
+                              <img
+                                src={DELETE_04}
+                                className='cursor-pointer'
+                                alt=''
+                                onClick={() => {
+                                  setIsShowConfirm(true);
+                                  setSelectedId(attendant?.id);
+                                }}
+                              />
+                            )}
+
                             <img
-                              src={DELETE_04}
-                              className='cursor-pointer'
+                              src={CLOCK_05}
                               alt=''
+                              className='cursor-pointer'
                               onClick={() => {
-                                setIsShowConfirm(true);
+                                setShowHistory(true);
                                 setSelectedId(attendant?.id);
                               }}
                             />
-                          )}
-
-                          <img
-                            src={CLOCK_05}
-                            alt=''
-                            className='cursor-pointer'
-                            onClick={() => {
-                              setShowHistory(true);
-                              setSelectedId(attendant?.id);
-                            }}
-                          />
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })
-              ) : (
-                <tr>
-                  <td colSpan={10}>
-                    <EmptyTable />
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={10}>
+                      <EmptyTable />
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

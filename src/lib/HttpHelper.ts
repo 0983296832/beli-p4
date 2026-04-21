@@ -1,6 +1,6 @@
 const getBaseUrl = () => {
   const currentURL = window.location.origin; // Lấy URL hiện tại
-  return 'https://vhs-education.com';
+  return 'https://p2.belidevelopers.com';
 
   if (currentURL.includes('localhost') || currentURL.includes('fe.') || currentURL?.includes('192.168.113.105')) {
     // return 'https://local.beliteachers.com';
