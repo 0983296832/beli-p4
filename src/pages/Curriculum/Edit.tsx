@@ -4,14 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@components/ui/button';
 import TextInput from '@components/fields/TextInput';
 import SubjectsSelect from '@components/selects/SubjectsSelect';
-import NumberInput from '@components/fields/NumberInput';
 import TextAreaInput from '@components/fields/TextAreaInput';
-import { CAMERA, NO_IMAGE } from '@lib/ImageHelper';
+import { NO_IMAGE } from '@lib/ImageHelper';
 import Upload, { UploadTrigger } from '@components/upload';
 import { Toast } from '@components/toast';
 import curriculumServices from '@services/curriculum';
 import { cloneDeep } from 'lodash';
 import Loading from '@components/loading';
+import { RiArrowLeftLine, RiBookOpenLine, RiCameraLine, RiFileTextLine } from '@remixicon/react';
 
 const CurriculumEdit = () => {
   const { id } = useParams();
@@ -20,6 +20,7 @@ const CurriculumEdit = () => {
   const [formData, setFormData] = useState<any>({});
   const [errors, setErrors] = useState<any>({});
   const [loading, setLoading] = useState(false);
+  const isEdit = !!Number(id);
 
   const getDetail = async () => {
     setLoading(true);
@@ -76,88 +77,139 @@ const CurriculumEdit = () => {
       setLoading(false);
     }
   };
-  return (
-    <div className='shadow-lg card bg-primary-neutral-50 '>
-      <div className='flex items-center justify-between py-2.5 px-6 text-neutral-50 bg-primary-blue-500 card-header'>
-        <h3 className='text-base font-semibold leading-[100%]'>
-          {t(Number(id) ? 'edit_curriculum' : 'add_new_curriculum')}
-        </h3>
-      </div>
-      <Loading loading={loading} />
-      <div className='p-6 card-body space-y-6'>
-        <div className=' border border-primary-neutral-200 card flex-1'>
-          <div className='relative w-[206px] h-[186px] border border-primary-neutral-300 rounded-lg flex justify-center items-center m-6 mb-0'>
-            <img
-              src={formData?.avatar || NO_IMAGE}
-              alt='No Image'
-              className={`absolute object-cover w-full h-full p-3 ${!formData?.avatar && 'opacity-50'} `}
-            />
-            <Upload
-              className='mb-5'
-              value={[]}
-              isSingle
-              maxFiles={1}
-              onChange={(files) => {
-                setFormData({ ...formData, avatar: files?.[0].url });
-              }}
-              accept={{ 'image/*': [] }}
-            >
-              <UploadTrigger>
-                <div className='absolute flex items-center justify-center p-1 rounded-full bg-primary-neutral-50 bottom-1 right-1 size-12'>
-                  <img src={CAMERA} alt='No Image' className='absolute object-cover opacity-50 size-5' />
-                </div>
-              </UploadTrigger>
-            </Upload>
-          </div>
-          <div className='p-6 card-body '>
-            <div className='grid grid-cols-2 gap-x-9 gap-y-4'>
-              <TextInput
-                required
-                label={t('curriculum_name')}
-                placeholder={t('enter_curriculum_name')}
-                value={formData.learning_program_name}
-                error={errors?.learning_program_name}
-                className='w-full'
-                onChange={(val) => handleChange('learning_program_name', val)}
-              />
 
-              <SubjectsSelect
-                required
-                label={t('subject')}
-                value={formData.subject_id}
-                error={errors?.subject_id}
-                className='w-full'
-                onChange={(val) => handleChange('subject_id', val?.id)}
-              />
+  return (
+    <div>
+      <Loading loading={loading} />
+      <div className='mx-auto w-full max-w-6xl pb-24'>
+        <div className='overflow-hidden rounded-3xl border border-violet-200 bg-white shadow-sm'>
+          <div className='border-b border-violet-200 bg-violet-50 px-5 py-4'>
+            <div className='flex flex-wrap items-center justify-between gap-3'>
+              <div className='min-w-0'>
+                <p className='text-xs font-medium uppercase tracking-wide text-violet-600'>
+                  {isEdit ? t('edit_curriculum') : t('add_new_curriculum')}
+                </p>
+                <h3 className='mt-0.5 truncate text-xl font-semibold text-slate-800'>
+                  {formData?.learning_program_name || t('curriculum_name')}
+                </h3>
+              </div>
+              <Button
+                type='button'
+                variant='outline'
+                className='rounded-xl border-violet-200 bg-white text-violet-700 hover:bg-violet-100'
+                onClick={() => {
+                  navigate('/curriculum/list');
+                }}
+              >
+                <RiArrowLeftLine className='size-4' />
+                {t('back')}
+              </Button>
             </div>
-            <div className='mt-4'>
-              <TextAreaInput
-                label={t('introduce_curriculum')}
-                rows={7}
-                value={formData.description}
-                error={errors?.description}
-                className='w-full'
-                onChange={(val) => handleChange('description', val)}
-              />
+          </div>
+
+          <div className='p-5 lg:p-6'>
+            <div className='flex flex-col gap-6 lg:flex-row lg:items-start'>
+              <aside className='w-full shrink-0 lg:w-72'>
+                <div className='rounded-2xl border border-violet-200 bg-violet-50/40 p-4 shadow-sm'>
+                  <div className='relative overflow-hidden rounded-xl border border-white bg-white shadow-inner'>
+                    <img
+                      src={formData?.avatar || NO_IMAGE}
+                      alt='No Image'
+                      className={`aspect-square w-full object-cover ${!formData?.avatar ? 'opacity-50' : ''}`}
+                    />
+                    <Upload
+                      value={[]}
+                      isSingle
+                      maxFiles={1}
+                      onChange={(files) => {
+                        setFormData({ ...formData, avatar: files?.[0].url });
+                      }}
+                      accept={{ 'image/*': [] }}
+                    >
+                      <UploadTrigger>
+                        <div className='absolute bottom-3 right-3 inline-flex size-10 items-center justify-center rounded-full border border-violet-200 bg-white/95 text-violet-700 shadow-sm transition-colors hover:bg-violet-50'>
+                          <RiCameraLine className='size-4' />
+                        </div>
+                      </UploadTrigger>
+                    </Upload>
+                  </div>
+                  <p className='mt-3 text-center text-xs text-slate-500'>{t('avatar')}</p>
+                </div>
+              </aside>
+
+              <div className='min-w-0 flex-1 space-y-4'>
+                <section className='rounded-2xl border border-violet-200 bg-white'>
+                  <div className='flex items-center gap-2 border-b border-violet-100 bg-violet-50/80 px-4 py-3'>
+                    <RiBookOpenLine className='size-5 text-violet-600' />
+                    <h2 className='text-sm font-semibold text-violet-900'>{t('curriculum_info')}</h2>
+                  </div>
+                  <div className='space-y-4 p-4 lg:p-5'>
+                    <div className='grid gap-4 lg:grid-cols-2 lg:gap-x-7'>
+                      <div className='rounded-xl border border-violet-100 bg-violet-50/40 p-3'>
+                        <TextInput
+                          required
+                          label={t('curriculum_name')}
+                          placeholder={t('enter_curriculum_name')}
+                          value={formData.learning_program_name}
+                          error={errors?.learning_program_name}
+                          className='w-full'
+                          onChange={(val) => handleChange('learning_program_name', val)}
+                        />
+                      </div>
+                      <div className='rounded-xl border border-emerald-100 bg-emerald-50/40 p-3'>
+                        <SubjectsSelect
+                          required
+                          label={t('subject')}
+                          value={formData.subject_id}
+                          error={errors?.subject_id}
+                          className='w-full'
+                          onChange={(val) => handleChange('subject_id', val?.id)}
+                        />
+                      </div>
+                    </div>
+                    <div className='rounded-2xl border border-rose-200 bg-rose-50/30 p-4'>
+                      <div className='mb-3 flex items-center gap-2 text-sm font-semibold text-rose-900'>
+                        <RiFileTextLine className='size-4' />
+                        {t('introduce_curriculum')}
+                      </div>
+                      <TextAreaInput
+                        rows={7}
+                        value={formData.description}
+                        error={errors?.description}
+                        className='w-full'
+                        onChange={(val) => handleChange('description', val)}
+                      />
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className='flex justify-center gap-6 mb-6'>
-        <Button
-          variant='default'
-          className='w-[140px] bg-primary-error hover:bg-primary-error/80'
-          onClick={() => {
-            navigate('/teaching-program/list');
-          }}
-        >
-          {t('cancel')}
-        </Button>
-
-        <Button variant='default' className='w-[140px]' onClick={onUpdate} disabled={loading}>
-          {t(id ? 'update' : 'create')}
-        </Button>
+        <div className='fixed bottom-0 left-[70px] right-0 z-[49] border-t border-violet-200 bg-violet-50/95 px-4 py-2 shadow-[0_-6px_14px_-12px_rgba(15,23,42,0.25)]'>
+          <div className='mx-auto flex w-full max-w-6xl justify-center gap-4'>
+            <Button
+              variant='outline'
+              type='button'
+              className='min-w-[140px] rounded-xl border-rose-300 bg-white text-rose-700 hover:bg-rose-50'
+              onClick={() => {
+                navigate('/curriculum/list');
+              }}
+            >
+              {t('cancel')}
+            </Button>
+            <Button
+              variant='default'
+              type='button'
+              className='min-w-[160px] rounded-xl bg-emerald-500 text-white hover:bg-emerald-600'
+              onClick={onUpdate}
+              disabled={loading}
+            >
+              {id ? t('update') : t('create')}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

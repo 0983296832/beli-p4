@@ -50,47 +50,47 @@ const DetailPeriod = ({ show, setShow, id }: Props) => {
       isOpen={show}
       title={t('detailed_info')}
       onClose={() => setShow(false)}
-      className='rounded-lg border-none gap-0 p-0 max-w-[70%] overflow-hidden bg-white'
-      headerClassName='border-b text-neutral-50 bg-primary-blue-500 mb-6 text-white'
+      className='rounded-3xl border border-violet-200 gap-0 p-0 max-w-[70%] overflow-hidden bg-white shadow-sm'
+      headerClassName='border-b border-violet-200 bg-violet-50 text-slate-800'
     >
       <Loading loading={loading} />
-      <div className=' bg-white max-h-[calc(100vh-200px)] overflow-y-auto'>
-        <div className='border rounded-lg p-6'>
+      <div className='max-h-[calc(100vh-200px)] overflow-y-auto'>
+        <div className='rounded-2xl border border-violet-100 bg-violet-50/20 p-6'>
           <div className='grid grid-cols-[300px_30px_1fr] mb-3'>
-            <div className='text-primary-neutral-600'>{t('lesson_title')}</div>
-            <div className='text-primary-neutral-600'>:</div>
-            <div className=''>{detail?.lesson_name}</div>
+            <div className='text-slate-600'>{t('lesson_title')}</div>
+            <div className='text-slate-600'>:</div>
+            <div className='text-slate-800'>{detail?.lesson_name}</div>
           </div>
           {currentUser?.user_job_title != USER_ROLE.STUDENT && (
             <div className='grid grid-cols-[300px_30px_1fr] mb-3'>
-              <div className='text-primary-neutral-600'>{t('lesson_content_google_driver_link')}</div>
-              <div className='text-primary-neutral-600'>:</div>
+              <div className='text-slate-600'>{t('lesson_content_google_driver_link')}</div>
+              <div className='text-slate-600'>:</div>
 
-              <a href={detail?.drive_link} target='_blank' className='underline text-primary-blue-500 break-all'>
+              <a href={detail?.drive_link} target='_blank' className='underline text-violet-600 hover:text-violet-800 break-all'>
                 {detail?.drive_link}
               </a>
             </div>
           )}
 
           <div className='grid grid-cols-[300px_30px_1fr] mb-3'>
-            <div className='text-primary-neutral-600'>{t('lesson_content_youtube_link')}</div>
-            <div className='text-primary-neutral-600'>:</div>
-            <a href={detail?.youtube_link} target='_blank' className='underline text-primary-blue-500 break-all'>
+            <div className='text-slate-600'>{t('lesson_content_youtube_link')}</div>
+            <div className='text-slate-600'>:</div>
+            <a href={detail?.youtube_link} target='_blank' className='underline text-violet-600 hover:text-violet-800 break-all'>
               {detail?.youtube_link}
             </a>
           </div>
           <div className='grid grid-cols-[300px_30px_1fr] mb-3'>
-            <div className='text-primary-neutral-600'>{t('lesson_content_tiktok_link')}</div>
-            <div className='text-primary-neutral-600'>:</div>
-            <a href={detail?.tiktok_link} target='_blank' className='underline text-primary-blue-500 break-all'>
+            <div className='text-slate-600'>{t('lesson_content_tiktok_link')}</div>
+            <div className='text-slate-600'>:</div>
+            <a href={detail?.tiktok_link} target='_blank' className='underline text-violet-600 hover:text-violet-800 break-all'>
               {detail?.tiktok_link}
             </a>
           </div>
           <div className='grid grid-cols-[300px_30px_1fr] mb-3'>
-            <div className='text-primary-neutral-600'>{t('lesson_content')}</div>
-            <div className='text-primary-neutral-600'>:</div>
+            <div className='text-slate-600'>{t('lesson_content')}</div>
+            <div className='text-slate-600'>:</div>
             <div
-              className=''
+              className='text-slate-800'
               dangerouslySetInnerHTML={{
                 __html: replaceNewlineWithBr(
                   currentLanguage == 'en' ? detail?.english_lesson_content : detail?.lesson_content
@@ -99,8 +99,8 @@ const DetailPeriod = ({ show, setShow, id }: Props) => {
             />
           </div>
           <div className='grid grid-cols-[300px_30px_1fr]'>
-            <div className='text-primary-neutral-600'>{t('lesson_photo')}</div>
-            <div className='text-primary-neutral-600'>:</div>
+            <div className='text-slate-600'>{t('lesson_photo')}</div>
+            <div className='text-slate-600'>:</div>
 
             <div className='flex items-center gap-[10px] flex-wrap'>
               {detail?.images?.map((file: any, index: any) => {
@@ -108,7 +108,7 @@ const DetailPeriod = ({ show, setShow, id }: Props) => {
                   <div key={index} className=''>
                     <PhotoProvider className='z-[999999]' portalContainer={document.body}>
                       <PhotoView src={file?.image_url}>
-                        <img src={file?.image_url} alt='' className={'size-24 min-w-24 rounded-[10px] object-cover'} />
+                        <img src={file?.image_url} alt='' className={'size-24 min-w-24 rounded-[10px] object-cover border border-violet-100'} />
                       </PhotoView>
                     </PhotoProvider>
                   </div>
@@ -118,7 +118,12 @@ const DetailPeriod = ({ show, setShow, id }: Props) => {
           </div>
         </div>
         <div className='mt-6 flex items-center justify-end'>
-          <Button onClick={() => setShow(false)}>{t('close')}</Button>
+          <Button
+            className='min-w-[140px] rounded-xl bg-emerald-500 text-white hover:bg-emerald-600'
+            onClick={() => setShow(false)}
+          >
+            {t('close')}
+          </Button>
         </div>
       </div>
     </CustomModal>

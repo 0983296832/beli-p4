@@ -41,6 +41,7 @@ import {
   AlertDialogTrigger
 } from '@components/ui/alert-dialog';
 import { getFormattedSchedule, roundNumber } from '@lib/JsHelper';
+import { RiArrowLeftLine } from '@remixicon/react';
 
 interface Props {}
 
@@ -179,19 +180,32 @@ const AttendanceStudentEdit = (props: Props) => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <div className='pb-20'>
+      <div className='mx-auto w-full max-w-6xl pb-32'>
         <Loading loading={loading} />
-        <div className='shadow-lg card bg-primary-neutral-50 '>
-          <div className='flex items-center justify-between py-2.5 px-6 text-neutral-50 bg-primary-blue-500 card-header'>
-            <h3 className='text-base font-semibold leading-[100%]'>{t('student_attendance')}</h3>
-            <Button variant='secondary' className='text-primary-success  px-7' onClick={onUpdate} disabled={loading}>
-              {t(Number(id) ? 'update' : 'create')}
-            </Button>
+        <div className='overflow-hidden rounded-3xl border border-violet-200 bg-white shadow-sm'>
+          <div className='border-b border-violet-200 bg-violet-50 px-5 py-4'>
+            <div className='flex flex-wrap items-center justify-between gap-3'>
+              <div className='min-w-0'>
+                <p className='text-xs font-medium uppercase tracking-wide text-violet-600'>
+                  {Number(id) ? t('update') : t('create')}
+                </p>
+                <h3 className='mt-0.5 truncate text-xl font-semibold text-slate-800'>{t('student_attendance')}</h3>
+              </div>
+              <Button
+                type='button'
+                variant='outline'
+                className='rounded-xl border-violet-200 bg-white text-violet-700 hover:bg-violet-100'
+                onClick={() => navigate('/attendance/students/list')}
+              >
+                <RiArrowLeftLine className='size-4' />
+                {t('back')}
+              </Button>
+            </div>
           </div>
-          <div className='p-6 card-body'>
-            <div className='flex gap-9'>
-              <div className='w-[310px]'>
-                <div className='p-2 space-y-4 border rounded-lg border-primary-neutral-300 mb-6 '>
+          <div className='p-5 lg:p-6'>
+            <div className='flex flex-col gap-6 lg:flex-row lg:items-start'>
+              <aside className='w-full shrink-0 lg:w-[310px]'>
+                <div className='mb-4 rounded-2xl border border-violet-200 bg-violet-50/40 p-2 shadow-sm'>
                   <CalendarCustom
                     value={formData?.attendance_time}
                     className='px-2 pt-2 pb-0'
@@ -202,7 +216,7 @@ const AttendanceStudentEdit = (props: Props) => {
                     }}
                   />
                 </div>
-                <div className='p-2 space-y-4 rounded-lg'>
+                <div className='space-y-4 rounded-2xl border border-violet-200 bg-white p-3'>
                   <div className='w-full'>
                     <SubjectsSelect
                       required
@@ -323,12 +337,12 @@ const AttendanceStudentEdit = (props: Props) => {
                     />
                   </div>
                 </div>
-              </div>
-              <div className='flex-1 space-y-6'>
-                <div className='w-full border border-primary-neutral-300 card'>
-                  <div className='flex items-center justify-between border-b card-header text-primary-blue-600 border-primary-neutral-300 bg-primary-blue-50'>
-                    <h3 className='text-base font-semibold leading-[100%]'>{t('student_list')}</h3>
-                    <div className='flex gap-3'>
+              </aside>
+              <div className='min-w-0 flex-1 space-y-4'>
+                <section className='overflow-hidden rounded-2xl border border-emerald-200 bg-white'>
+                  <div className='flex flex-wrap items-center justify-between gap-3 border-b border-emerald-100 bg-emerald-50/80 px-4 py-3'>
+                    <h2 className='text-sm font-semibold text-emerald-900'>{t('student_list')}</h2>
+                    <div className='flex flex-wrap gap-3'>
                       <div className='w-[400px]'>
                         <SearchInput
                           placeholder={t('search')}
@@ -459,13 +473,14 @@ const AttendanceStudentEdit = (props: Props) => {
                       </div>
                     )}
                   </div>
-                </div>
+                </section>
               </div>
             </div>
           </div>
         </div>
-        <div className='fixed bottom-0 left-[70px] right-0 z-[1] p-4 bg-primary-neutral-50 border-t border-primary-neutral-300'>
-          <div className='flex items-center justify-center gap-7'>
+
+        <div className='fixed bottom-[52px] left-[70px] right-0 z-[1] border-t border-violet-200 bg-violet-50/95 p-4'>
+          <div className='mx-auto flex w-full max-w-6xl flex-wrap items-center justify-center gap-7'>
             <div className='flex items-center gap-1 px-2 py-1 text-sm text-white rounded-lg bg-primary-success'>
               {t('attend_class')}
               <div className='px-2 py-1 text-primary-success bg-[#e4ffe9] rounded-lg w-fit text-xs'>
@@ -529,6 +544,28 @@ const AttendanceStudentEdit = (props: Props) => {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+
+        <div className='fixed bottom-0 left-[70px] right-0 z-[49] border-t border-violet-200 bg-violet-50/95 px-4 py-2 shadow-[0_-6px_14px_-12px_rgba(15,23,42,0.25)]'>
+          <div className='mx-auto flex w-full max-w-6xl justify-center gap-4'>
+            <Button
+              variant='outline'
+              type='button'
+              className='min-w-[140px] rounded-xl border-rose-300 bg-white text-rose-700 hover:bg-rose-50'
+              onClick={() => navigate('/attendance/students/list')}
+            >
+              {t('cancel')}
+            </Button>
+            <Button
+              variant='default'
+              type='button'
+              className='min-w-[160px] rounded-xl bg-emerald-500 text-white hover:bg-emerald-600'
+              onClick={onUpdate}
+              disabled={loading}
+            >
+              {t(Number(id) ? 'update' : 'create')}
+            </Button>
           </div>
         </div>
       </div>
