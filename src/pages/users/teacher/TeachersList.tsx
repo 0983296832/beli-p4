@@ -157,7 +157,7 @@ const TeachersList = (props: Props) => {
     setLoading(true);
     try {
       const response: any = await teacherServices.getTeacherExport(params);
-      downloadFileFromBlob(response, 'danh_sach_giao_vien_vhs.xlsx');
+      downloadFileFromBlob(response, 'danh_sach_giao_vien_beli.xlsx');
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -380,297 +380,300 @@ const TeachersList = (props: Props) => {
           {activeTab === 'table_view' ? (
             <div className='mt-1 overflow-hidden rounded-3xl border border-violet-200 bg-white shadow-sm'>
               <table className='w-full min-w-[1280px] border-separate border-spacing-0 text-sm [&_th]:border-b [&_th]:border-r [&_th]:border-violet-200 [&_th]:px-3 [&_th]:py-3 [&_th]:text-left [&_th]:font-semibold [&_th:last-child]:border-r-0 [&_td]:border-b [&_td]:border-r [&_td]:border-violet-100 [&_td]:px-3 [&_td]:py-3 [&_td]:align-middle [&_td:last-child]:border-r-0'>
-              <thead>
-                <tr>
-                  <th scope='col' rowSpan={2} className='bg-slate-100'>
-                    <div className='flex justify-center'>
-                      <CheckboxInput
-                        checked={data.every((user: any) => ids?.includes(user?.id))}
-                        onCheckedChange={(checked) => {
-                          if (checked) {
-                            setIds([...ids, ...data.map((user: any) => user?.id)]);
-                          } else {
-                            setIds(ids.filter((id) => !data.map((user: any) => user?.id).includes(id)));
-                          }
-                        }}
-                      />
-                    </div>
-                  </th>
-                  <th scope='col' rowSpan={2} className='bg-violet-100/70 text-violet-900'>
-                    {t('teacher_code_name')}
-                  </th>
-                  <th scope='col' rowSpan={2} className='bg-violet-100/70 text-violet-900'>
-                    {t('date_of_birth')}
-                    <br />
-                    {t('age')}
-                    <br />
-                    {t('gender')}
-                  </th>
-                  <th scope='col' rowSpan={2} className='bg-amber-100/70 text-amber-900'>
-                    {t('address')} / {t('short_phone')} / {t('email')}
-                  </th>
-                  <th scope='col' colSpan={6} className='bg-emerald-100/80 text-emerald-900'>
-                    {t('teacher_participation_info')}
-                  </th>
-                  <th scope='col' rowSpan={2} className='w-[150px] bg-sky-100/70 text-sky-900'>
-                    {t('last_teaching_attendance_date')}
-                  </th>
-                  <th scope='col' rowSpan={2} className='whitespace-nowrap w-[1%] bg-rose-100/70 text-rose-900'>
-                    {t('description')}
-                  </th>
-                  <th scope='col' rowSpan={2} className='whitespace-nowrap w-[1%] bg-rose-100/70 text-rose-900'>
-                    {t('action')}
-                  </th>
-                </tr>
-                <tr className='tr-sub bg-emerald-100/60 text-emerald-900'>
-                  <th scope='col'>{t('students')}</th>
-                  <th scope='col'>{t('classroom')}</th>
-                  <th scope='col'>{t('subject')}</th>
-                  <th scope='col'>{t('location')}</th>
-                  <th scope='col'>{t('teaching_program')}</th>
-                  <th scope='col'>{t('curriculum')}</th>
-                </tr>
-                {ids?.length > 0 && (
-                    <tr className='tr-sub-form tr-sub'>
-                    <th colSpan={11} className='p-2.5 bg-rose-500'>
-                      <div className='flex justify-start '>
-                        <Button
-                          size={'sm'}
-                          onClick={() => {
-                            setIsShowConfirmBulk(true);
+                <thead>
+                  <tr>
+                    <th scope='col' rowSpan={2} className='bg-slate-100'>
+                      <div className='flex justify-center'>
+                        <CheckboxInput
+                          checked={data.every((user: any) => ids?.includes(user?.id))}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setIds([...ids, ...data.map((user: any) => user?.id)]);
+                            } else {
+                              setIds(ids.filter((id) => !data.map((user: any) => user?.id).includes(id)));
+                            }
                           }}
-                          variant='secondary'
-                          className='text-rose-600 bg-primary-neutral-50'
-                        >
-                          <img src={DELETE_04} alt='' />
-                          {t('delete')}
-                          <span className='bg-[#FFE2E0] rounded-3xl py-1 px-4 text-[10px]'>{ids.length}</span>
-                        </Button>
+                        />
                       </div>
                     </th>
+                    <th scope='col' rowSpan={2} className='bg-violet-100/70 text-violet-900'>
+                      {t('teacher_code_name')}
+                    </th>
+                    <th scope='col' rowSpan={2} className='bg-violet-100/70 text-violet-900'>
+                      {t('date_of_birth')}
+                      <br />
+                      {t('age')}
+                      <br />
+                      {t('gender')}
+                    </th>
+                    <th scope='col' rowSpan={2} className='bg-amber-100/70 text-amber-900'>
+                      {t('address')} / {t('short_phone')} / {t('email')}
+                    </th>
+                    <th scope='col' colSpan={6} className='bg-emerald-100/80 text-emerald-900'>
+                      {t('teacher_participation_info')}
+                    </th>
+                    <th scope='col' rowSpan={2} className='w-[150px] bg-sky-100/70 text-sky-900'>
+                      {t('last_teaching_attendance_date')}
+                    </th>
+                    <th scope='col' rowSpan={2} className='whitespace-nowrap w-[1%] bg-rose-100/70 text-rose-900'>
+                      {t('description')}
+                    </th>
+                    <th scope='col' rowSpan={2} className='whitespace-nowrap w-[1%] bg-rose-100/70 text-rose-900'>
+                      {t('action')}
+                    </th>
                   </tr>
-                )}
-              </thead>
-              <tbody className='bg-white'>
-                {data?.length > 0 ? (
-                  data.map((user: any, index: number) => (
-                    <tr key={index} className='transition-colors odd:bg-white even:bg-violet-50/40 hover:bg-cyan-50/70'>
-                      <td className='bg-violet-50/60'>
-                        <div className='flex justify-center'>
-                          <CheckboxInput
-                            checked={ids?.includes(user?.id)}
-                            onCheckedChange={(checked) => {
-                              if (ids?.includes(user?.id)) {
-                                setIds(ids?.filter((id) => id !== user?.id));
-                              } else {
-                                setIds([...ids, user?.id]);
-                              }
+                  <tr className='tr-sub bg-emerald-100/60 text-emerald-900'>
+                    <th scope='col'>{t('students')}</th>
+                    <th scope='col'>{t('classroom')}</th>
+                    <th scope='col'>{t('subject')}</th>
+                    <th scope='col'>{t('location')}</th>
+                    <th scope='col'>{t('teaching_program')}</th>
+                    <th scope='col'>{t('curriculum')}</th>
+                  </tr>
+                  {ids?.length > 0 && (
+                    <tr className='tr-sub-form tr-sub'>
+                      <th colSpan={11} className='p-2.5 bg-rose-500'>
+                        <div className='flex justify-start '>
+                          <Button
+                            size={'sm'}
+                            onClick={() => {
+                              setIsShowConfirmBulk(true);
                             }}
-                          />
+                            variant='secondary'
+                            className='text-rose-600 bg-primary-neutral-50'
+                          >
+                            <img src={DELETE_04} alt='' />
+                            {t('delete')}
+                            <span className='bg-[#FFE2E0] rounded-3xl py-1 px-4 text-[10px]'>{ids.length}</span>
+                          </Button>
                         </div>
-                      </td>
-                      <td className='bg-violet-50/60'>
-                        <div className='flex items-center gap-2'>
-                          <img
-                            className='object-cover rounded-full size-10 min-w-10 min-h-10'
-                            src={user.avatar || NO_AVATAR}
-                            alt=''
-                          />
-                          <div className='text-start'>
-                            <div>{user.username}</div>
-                            <Link to={`/user/teacher/detail/${user.id}`} className='text-primary-blue-500'>
-                              {user.display_name}
-                            </Link>
-                            <div className='px-2 py-1 text-primary-success bg-[#e4ffe9] rounded-15 w-fit text-xs mt-1'>
-                              {user.working_status == 1 ? t('active') : t('inactive')}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className='bg-amber-50/70'>
-                        <div>{convertTimestampToString(user.birthday) || t('not_updated')}</div>
-                        <div>
-                          {user.age || 0} {t('age')}
-                        </div>
-                        <div>{user?.gender === 1 ? t('male') : user?.gender === 0 ? t('female') : t('other')}</div>
-                      </td>
-                      <td className='bg-amber-50/70'>
-                        <div className='flex flex-col items-center'>
-                          <div className='flex items-center gap-1'>
-                            <img src={LOCATION_05} alt='' />{' '}
-                            {user.address || user?.ward_name || user?.district_name || user?.province_name
-                              ? `${user.address} ${user?.ward_name} ${user?.district_name} ${user?.province_name}`
-                              : t('not_updated')}
-                          </div>
-                          <div className='flex items-center gap-2'>
-                            <div className='flex items-center gap-1'>
-                              <img src={CALL} alt='' /> {user?.phone || t('not_updated')}
-                            </div>
-                            <div className='flex items-center gap-1'>
-                              <img src={MAIL_02} alt='' /> {user?.email || t('not_updated')}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className='underline text-emerald-700 bg-emerald-50/80'>
-                        {' '}
-                        <p
-                          className='cursor-pointer'
-                          onClick={() => {
-                            setStatisticInfo({
-                              show: true,
-                              objectId: user?.id,
-                              type: 'student',
-                              extraFilter: {
-                                filterings: {
-                                  ['teacher_id:eq']: user?.id
+                      </th>
+                    </tr>
+                  )}
+                </thead>
+                <tbody className='bg-white'>
+                  {data?.length > 0 ? (
+                    data.map((user: any, index: number) => (
+                      <tr
+                        key={index}
+                        className='transition-colors odd:bg-white even:bg-violet-50/40 hover:bg-cyan-50/70'
+                      >
+                        <td className='bg-violet-50/60'>
+                          <div className='flex justify-center'>
+                            <CheckboxInput
+                              checked={ids?.includes(user?.id)}
+                              onCheckedChange={(checked) => {
+                                if (ids?.includes(user?.id)) {
+                                  setIds(ids?.filter((id) => id !== user?.id));
+                                } else {
+                                  setIds([...ids, user?.id]);
                                 }
-                              }
-                            });
-                          }}
-                        >
-                          {user?.manager_statistic?.students}
-                        </p>
-                      </td>
-                      <td className='underline text-emerald-700 bg-emerald-50/80'>
-                        <p
-                          className='cursor-pointer'
-                          onClick={() => {
-                            setStatisticInfo({
-                              show: true,
-                              objectId: user?.id,
-                              type: 'classroom',
-                              extraFilter: {
-                                filterings: {
-                                  ['teacher_id:eq']: user?.id
-                                }
-                              }
-                            });
-                          }}
-                        >
-                          {user?.manager_statistic?.classrooms}
-                        </p>
-                      </td>
-                      <td className='underline text-emerald-700 bg-emerald-50/80'>
-                        <p
-                          className='cursor-pointer'
-                          onClick={() => {
-                            setStatisticInfo({
-                              show: true,
-                              objectId: user?.id,
-                              type: 'subject',
-                              extraFilter: {
-                                filterings: {
-                                  ['teacher_id:eq']: user?.id
-                                }
-                              }
-                            });
-                          }}
-                        >
-                          {user?.manager_statistic?.subjects}
-                        </p>
-                      </td>
-                      <td className='underline text-emerald-700 bg-emerald-50/80'>
-                        <p
-                          className='cursor-pointer'
-                          onClick={() => {
-                            setStatisticInfo({
-                              show: true,
-                              objectId: user?.id,
-                              type: 'location',
-                              extraFilter: {
-                                filterings: {
-                                  ['teacher_id:eq']: user?.id
-                                }
-                              }
-                            });
-                          }}
-                        >
-                          {user?.manager_statistic?.teaching_locations}
-                        </p>
-                      </td>
-                      <td className='underline text-emerald-700 bg-emerald-50/80'>
-                        <p
-                          className='cursor-pointer'
-                          onClick={() => {
-                            setStatisticInfo({
-                              show: true,
-                              objectId: user?.id,
-                              type: 'teaching_program',
-                              extraFilter: {
-                                filterings: {
-                                  ['teacher_id:eq']: user?.id
-                                }
-                              }
-                            });
-                          }}
-                        >
-                          {user?.manager_statistic?.teaching_programs}
-                        </p>
-                      </td>
-                      <td className='underline text-emerald-700 bg-emerald-50/80'>
-                        <p
-                          className='cursor-pointer'
-                          onClick={() => {
-                            setStatisticInfo({
-                              show: true,
-                              objectId: user?.id,
-                              type: 'learning_program',
-                              extraFilter: {
-                                filterings: {
-                                  ['teacher_id:eq']: user?.id
-                                }
-                              }
-                            });
-                          }}
-                        >
-                          {user?.manager_statistic?.learning_programs}
-                        </p>
-                      </td>
-                      <td className='bg-sky-50/70'>
-                        <p>{convertTimestampToString(user?.latest_teacher_attendance?.attendance_time)}</p>
-                        <p>{getClassroomInfo(user?.latest_teacher_attendance?.classroom_id)?.classroom_name}</p>
-                      </td>
-                      <td className='whitespace-nowrap w-[1%]'>
-                        <div className='flex justify-center'>
-                          <ModalDescription
-                            defaultDescription={user?.description}
-                            onUpdateDescription={(desc: string) => {
-                              onUpdateDescription(user?.id, desc);
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td className='whitespace-nowrap w-[1%]'>
-                        <div className='flex items-center justify-center gap-1'>
-                          {!!user?.user_ability?.can_edit && (
-                            <Link to={`/user/teacher/edit/${user.id}`}>
-                              <img src={EDIT_02} alt='' />
-                            </Link>
-                          )}
-                          {!!user?.user_ability?.can_delete && (
-                            <img
-                              src={DELETE_04}
-                              className='cursor-pointer'
-                              alt=''
-                              onClick={() => {
-                                setIsShowConfirm(true);
-                                setSelectedId(user.id);
                               }}
                             />
-                          )}
-                        </div>
+                          </div>
+                        </td>
+                        <td className='bg-violet-50/60'>
+                          <div className='flex items-center gap-2'>
+                            <img
+                              className='object-cover rounded-full size-10 min-w-10 min-h-10'
+                              src={user.avatar || NO_AVATAR}
+                              alt=''
+                            />
+                            <div className='text-start'>
+                              <div>{user.username}</div>
+                              <Link to={`/user/teacher/detail/${user.id}`} className='text-primary-blue-500'>
+                                {user.display_name}
+                              </Link>
+                              <div className='px-2 py-1 text-primary-success bg-[#e4ffe9] rounded-15 w-fit text-xs mt-1'>
+                                {user.working_status == 1 ? t('active') : t('inactive')}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className='bg-amber-50/70'>
+                          <div>{convertTimestampToString(user.birthday) || t('not_updated')}</div>
+                          <div>
+                            {user.age || 0} {t('age')}
+                          </div>
+                          <div>{user?.gender === 1 ? t('male') : user?.gender === 0 ? t('female') : t('other')}</div>
+                        </td>
+                        <td className='bg-amber-50/70'>
+                          <div className='flex flex-col items-center'>
+                            <div className='flex items-center gap-1'>
+                              <img src={LOCATION_05} alt='' />{' '}
+                              {user.address || user?.ward_name || user?.district_name || user?.province_name
+                                ? `${user.address} ${user?.ward_name} ${user?.district_name} ${user?.province_name}`
+                                : t('not_updated')}
+                            </div>
+                            <div className='flex items-center gap-2'>
+                              <div className='flex items-center gap-1'>
+                                <img src={CALL} alt='' /> {user?.phone || t('not_updated')}
+                              </div>
+                              <div className='flex items-center gap-1'>
+                                <img src={MAIL_02} alt='' /> {user?.email || t('not_updated')}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className='underline text-emerald-700 bg-emerald-50/80'>
+                          {' '}
+                          <p
+                            className='cursor-pointer'
+                            onClick={() => {
+                              setStatisticInfo({
+                                show: true,
+                                objectId: user?.id,
+                                type: 'student',
+                                extraFilter: {
+                                  filterings: {
+                                    ['teacher_id:eq']: user?.id
+                                  }
+                                }
+                              });
+                            }}
+                          >
+                            {user?.manager_statistic?.students}
+                          </p>
+                        </td>
+                        <td className='underline text-emerald-700 bg-emerald-50/80'>
+                          <p
+                            className='cursor-pointer'
+                            onClick={() => {
+                              setStatisticInfo({
+                                show: true,
+                                objectId: user?.id,
+                                type: 'classroom',
+                                extraFilter: {
+                                  filterings: {
+                                    ['teacher_id:eq']: user?.id
+                                  }
+                                }
+                              });
+                            }}
+                          >
+                            {user?.manager_statistic?.classrooms}
+                          </p>
+                        </td>
+                        <td className='underline text-emerald-700 bg-emerald-50/80'>
+                          <p
+                            className='cursor-pointer'
+                            onClick={() => {
+                              setStatisticInfo({
+                                show: true,
+                                objectId: user?.id,
+                                type: 'subject',
+                                extraFilter: {
+                                  filterings: {
+                                    ['teacher_id:eq']: user?.id
+                                  }
+                                }
+                              });
+                            }}
+                          >
+                            {user?.manager_statistic?.subjects}
+                          </p>
+                        </td>
+                        <td className='underline text-emerald-700 bg-emerald-50/80'>
+                          <p
+                            className='cursor-pointer'
+                            onClick={() => {
+                              setStatisticInfo({
+                                show: true,
+                                objectId: user?.id,
+                                type: 'location',
+                                extraFilter: {
+                                  filterings: {
+                                    ['teacher_id:eq']: user?.id
+                                  }
+                                }
+                              });
+                            }}
+                          >
+                            {user?.manager_statistic?.teaching_locations}
+                          </p>
+                        </td>
+                        <td className='underline text-emerald-700 bg-emerald-50/80'>
+                          <p
+                            className='cursor-pointer'
+                            onClick={() => {
+                              setStatisticInfo({
+                                show: true,
+                                objectId: user?.id,
+                                type: 'teaching_program',
+                                extraFilter: {
+                                  filterings: {
+                                    ['teacher_id:eq']: user?.id
+                                  }
+                                }
+                              });
+                            }}
+                          >
+                            {user?.manager_statistic?.teaching_programs}
+                          </p>
+                        </td>
+                        <td className='underline text-emerald-700 bg-emerald-50/80'>
+                          <p
+                            className='cursor-pointer'
+                            onClick={() => {
+                              setStatisticInfo({
+                                show: true,
+                                objectId: user?.id,
+                                type: 'learning_program',
+                                extraFilter: {
+                                  filterings: {
+                                    ['teacher_id:eq']: user?.id
+                                  }
+                                }
+                              });
+                            }}
+                          >
+                            {user?.manager_statistic?.learning_programs}
+                          </p>
+                        </td>
+                        <td className='bg-sky-50/70'>
+                          <p>{convertTimestampToString(user?.latest_teacher_attendance?.attendance_time)}</p>
+                          <p>{getClassroomInfo(user?.latest_teacher_attendance?.classroom_id)?.classroom_name}</p>
+                        </td>
+                        <td className='whitespace-nowrap w-[1%]'>
+                          <div className='flex justify-center'>
+                            <ModalDescription
+                              defaultDescription={user?.description}
+                              onUpdateDescription={(desc: string) => {
+                                onUpdateDescription(user?.id, desc);
+                              }}
+                            />
+                          </div>
+                        </td>
+                        <td className='whitespace-nowrap w-[1%]'>
+                          <div className='flex items-center justify-center gap-1'>
+                            {!!user?.user_ability?.can_edit && (
+                              <Link to={`/user/teacher/edit/${user.id}`}>
+                                <img src={EDIT_02} alt='' />
+                              </Link>
+                            )}
+                            {!!user?.user_ability?.can_delete && (
+                              <img
+                                src={DELETE_04}
+                                className='cursor-pointer'
+                                alt=''
+                                onClick={() => {
+                                  setIsShowConfirm(true);
+                                  setSelectedId(user.id);
+                                }}
+                              />
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={12}>
+                        <EmptyTable />
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={12}>
-                      <EmptyTable />
-                    </td>
-                  </tr>
-                )}
-              </tbody>
+                  )}
+                </tbody>
               </table>
             </div>
           ) : (

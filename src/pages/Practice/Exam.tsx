@@ -318,7 +318,7 @@ const ExamComponent = ({
               <div className='max-w-[83px] pr-1 border-r'>
                 <img src={LOGO} className='size-[78px] min-w-[78px]' />
                 <p className='text-primary-blue-500 break-words text-center text-[10px] hidden sm:block'>
-                  VHS foreign language center
+                  BeliTeachers
                 </p>
 
                 <p className='custom_marker !text-primary-neutral-300 mb-2 text-xs font-medium block sm:hidden'>
