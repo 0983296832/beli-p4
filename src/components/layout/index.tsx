@@ -356,7 +356,9 @@ const MainLayout = ({ children }: Props) => {
                 <SheetHeader>
                   <SheetTitle className='flex items-center gap-3 px-4'>
                     <img className='size-40 rounded-xl' src={LOGO} alt='' />
-                    <div className='text-[10px] font-bold '>Beli<span className="text-primary-blue-600">Teachers</span></div>
+                    <div className='text-[10px] font-bold '>
+                      Beli<span className='text-primary-blue-600'>Teachers</span>
+                    </div>
                   </SheetTitle>
                 </SheetHeader>
 
@@ -425,7 +427,7 @@ const MainLayout = ({ children }: Props) => {
               <a href={LogoNavigate()}>
                 <img src={LOGO} alt='Logo' className='size-12 sm:block hidden rounded-md' />
               </a>
-              <p className='text-base font-bold text-primary-blue-600 sm:block hidden'>BeliTeachers </p>
+              <p className='text-base font-bold text-primary-blue-600 sm:block hidden'>BeliSchool </p>
             </div>
           </div>
           <div className='flex items-center justify-end sm:gap-6 gap-2'>

@@ -140,7 +140,7 @@ const RootRoute = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>BeliTeachers</title>
+        <title>BeliSchool</title>
         <meta name='description' content='Website quản lý và luyện tập' />
       </Helmet>
       <HashRouter>

@@ -100,7 +100,7 @@ const Login = (props: Props) => {
               style={{ backgroundImage: `url(${LOGIN_SIDE_IMAGE})` }}
             />
             <div className='text-center'>
-              <img alt='Beliteachers' src={LOGO} className='mx-auto mb-3 h-20 w-20 rounded-2xl object-contain' />
+              <img alt='BeliSchool' src={LOGO} className='mx-auto mb-3 h-20 w-20 rounded-2xl object-contain' />
               <p className='text-xs font-semibold uppercase tracking-[0.28em] text-primary-blue-600'>
                 {t('login_welcome')}
               </p>
