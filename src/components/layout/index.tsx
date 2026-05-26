@@ -356,7 +356,7 @@ const MainLayout = ({ children }: Props) => {
                 <SheetHeader>
                   <SheetTitle className='flex items-center gap-3 px-4'>
                     <img className='size-40 rounded-xl' src={LOGO} alt='' />
-                    <div className='text-[10px] font-bold text-primary-blue-600'>BeliTeachers</div>
+                    <div className='text-[10px] font-bold '>Beli<span className="text-primary-blue-600">Teachers</span></div>
                   </SheetTitle>
                 </SheetHeader>
 
